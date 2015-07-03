@@ -35,4 +35,11 @@ RSpec.describe Player, type: :model do
     it { should allow_value(nil).for(:season_losses) }
     it { should allow_value(2).for(:season_losses) }
   end
+
+  describe 'returns in the proper order' do
+    let!(:shy) { FactoryGirl.create(:player, handle: 'Shy') }
+    let!(:bjergerking) { FactoryGirl.create(:player, handle: 'Bjergsen') }
+
+    it { expect(Player.all).to eq [bjergerking, shy] }
+  end
 end

@@ -26,4 +26,6 @@ ActiveRecord::Schema.define(version: 20150530032523) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "players", ["handle"], name: "index_players_on_handle", using: :btree
+
 end

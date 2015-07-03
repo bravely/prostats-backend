@@ -6,4 +6,6 @@ class Player < ActiveRecord::Base
     marksman: 3,
     support: 4
   }
+
+  default_scope { order('handle ASC') }
 end
