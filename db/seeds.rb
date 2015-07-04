@@ -7,5 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Player.create!([
-  { handle: 'Faker', real_name: 'Lee Sang-hyeok', position: 'middle', season_wins: 3, season_losses: 0 }
+  { handle: 'Faker', real_name: 'Lee Sang-hyeok', position: 'middle', season_wins: 3, season_losses: 0 },
+  { handle: 'Hai', real_name: 'Hai Du Lam', position: 'jungle', season_wins: 2, season_losses: 3 }
 ])
