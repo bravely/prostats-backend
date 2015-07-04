@@ -1,0 +1,19 @@
+class Api::V1::TeamsController < ApplicationController
+  before_action :find_team, only: [:show]
+
+  def index
+    @teams = Team.all
+
+    render json: @teams, include: ['players']
+  end
+
+  def show
+    render json: @team, include: ['players']
+  end
+
+  private
+
+  def find_team
+    @team = Team.find(params[:id])
+  end
+end

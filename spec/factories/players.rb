@@ -5,5 +5,9 @@ FactoryGirl.define do
     position [nil, 'top', 'jungle', 'middle', 'marksman', 'support'].sample
     season_wins 2
     season_losses 1
+
+    factory :player_with_team do
+      team
+    end
   end
 end

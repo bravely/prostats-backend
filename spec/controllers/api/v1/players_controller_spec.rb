@@ -13,7 +13,7 @@ RSpec.describe Api::V1::PlayersController, type: :controller do
   end
 
   describe 'GET #show, format: :json' do
-    let!(:hai) { FactoryGirl.create(:player) }
+    let(:hai) { FactoryGirl.create(:player) }
     before do
       get :show, id: hai.id
     end
