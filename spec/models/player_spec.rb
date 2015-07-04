@@ -36,6 +36,10 @@ RSpec.describe Player, type: :model do
     it { should allow_value(2).for(:season_losses) }
   end
 
+  describe '#team' do
+    it { should belong_to(:team) }
+  end
+
   describe 'returns in the proper order' do
     let!(:shy) { FactoryGirl.create(:player, handle: 'Shy') }
     let!(:bjergerking) { FactoryGirl.create(:player, handle: 'Bjergsen') }
