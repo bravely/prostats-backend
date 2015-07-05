@@ -12,4 +12,8 @@ RSpec.describe Team, type: :model do
   describe '#players' do
     it { should have_many(:players) }
   end
+
+  describe '#league' do
+    it { should belong_to(:league) }
+  end
 end
