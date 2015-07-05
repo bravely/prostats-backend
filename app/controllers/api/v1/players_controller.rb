@@ -4,11 +4,11 @@ class Api::V1::PlayersController < ApplicationController
   def index
     @players = Player.all
 
-    render json: @players
+    render json: @players, include: ['team']
   end
 
   def show
-    render json: @player
+    render json: @player, include: ['team']
   end
 
   private

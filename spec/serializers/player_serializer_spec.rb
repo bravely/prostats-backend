@@ -3,7 +3,7 @@ require 'rails_helper'
 # The serializer test framework used here came from Attila Gyorffy
 # here: http://eclips3.net/2015/01/24/testing-active-model-serializer-with-rspec/
 RSpec.describe PlayerSerializer, type: :serializer do
-  let(:resource) { FactoryGirl.build(:player) }
+  let(:resource) { FactoryGirl.build(:player_with_team) }
   let(:serializer) { PlayerSerializer.new(resource) }
   let(:serialization) { ActiveModel::Serializer::Adapter.create(serializer) }
 
@@ -17,5 +17,9 @@ RSpec.describe PlayerSerializer, type: :serializer do
 
   it 'has the handle' do
     expect(subject['attributes']['handle']).to eq resource.handle
+  end
+
+  it 'has relationships including team' do
+    expect(subject['relationships']['team']['data']['id']).to eq resource.team.id.to_s
   end
 end

@@ -8,4 +8,5 @@ class Player < ActiveRecord::Base
   }
 
   default_scope { order('handle ASC') }
+  belongs_to :team
 end
