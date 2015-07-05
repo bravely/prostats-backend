@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150704185239) do
+ActiveRecord::Schema.define(version: 20150705005916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leagues", force: :cascade do |t|
+    t.string   "name"
+    t.string   "region"
+    t.string   "abbr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "handle"
@@ -35,7 +45,11 @@ ActiveRecord::Schema.define(version: 20150704185239) do
     t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "league_id"
   end
 
+  add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
+
   add_foreign_key "players", "teams"
+  add_foreign_key "teams", "leagues"
 end
