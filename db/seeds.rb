@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-skt = Team.create!(name: 'SK Telecom T1', location: 'South Korea')
-cnine = Team.create!(name: 'Cloud9', location: 'United States')
+lck = League.create!(name: 'LoL Champions Korea', region: 'South Korea', abbr: 'LCK')
+lcs = League.create!(name: 'North American League Championship Series', region: 'United States', abbr: 'LCS')
+
+skt = Team.create!(name: 'SK Telecom T1', location: 'South Korea', league: lck)
+cnine = Team.create!(name: 'Cloud9', location: 'United States', league: lcs)
 
 Player.create!([
   { handle: 'Faker', real_name: 'Lee Sang-hyeok', position: 'middle', season_wins: 3, season_losses: 0, team: skt },
