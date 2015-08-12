@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705005916) do
+ActiveRecord::Schema.define(version: 20150706015242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.datetime "played_at"
+    t.text     "notes"
+    t.string   "youtube_picks"
+    t.string   "youtube_start"
+    t.string   "twitch_picks"
+    t.string   "twitch_start"
+    t.integer  "blue_team_id"
+    t.integer  "red_team_id"
+    t.integer  "league_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "games", ["blue_team_id"], name: "index_games_on_blue_team_id", using: :btree
+  add_index "games", ["league_id"], name: "index_games_on_league_id", using: :btree
+  add_index "games", ["played_at"], name: "index_games_on_played_at", using: :btree
+  add_index "games", ["red_team_id"], name: "index_games_on_red_team_id", using: :btree
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +59,18 @@ ActiveRecord::Schema.define(version: 20150705005916) do
   add_index "players", ["handle"], name: "index_players_on_handle", using: :btree
   add_index "players", ["team_id"], name: "index_players_on_team_id", using: :btree
 
+  create_table "plays", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "plays", ["game_id"], name: "index_plays_on_game_id", using: :btree
+  add_index "plays", ["player_id"], name: "index_plays_on_player_id", using: :btree
+  add_index "plays", ["team_id"], name: "index_plays_on_team_id", using: :btree
+
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
@@ -51,5 +82,8 @@ ActiveRecord::Schema.define(version: 20150705005916) do
   add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
   add_foreign_key "players", "teams"
+  add_foreign_key "plays", "games"
+  add_foreign_key "plays", "players"
+  add_foreign_key "plays", "teams"
   add_foreign_key "teams", "leagues"
 end

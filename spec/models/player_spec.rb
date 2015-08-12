@@ -40,6 +40,14 @@ RSpec.describe Player, type: :model do
     it { should belong_to(:team) }
   end
 
+  describe '#plays' do
+    it { should have_many(:plays) }
+  end
+
+  describe '#games' do
+    it { should have_many(:games) }
+  end
+
   describe 'returns in the proper order' do
     let!(:shy) { FactoryGirl.create(:player, handle: 'Shy') }
     let!(:bjergerking) { FactoryGirl.create(:player, handle: 'Bjergsen') }

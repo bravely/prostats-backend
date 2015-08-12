@@ -9,5 +9,9 @@ FactoryGirl.define do
     factory :player_with_team do
       team
     end
+
+    factory :player_with_full_team do
+      association :team, factory: :team_with_players, player_count: 4
+    end
   end
 end
