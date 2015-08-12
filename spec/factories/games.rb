@@ -11,5 +11,10 @@ FactoryGirl.define do
       association :blue_team, factory: :team
       association :red_team, factory: :team
     end
+
+    factory :game_with_full_teams do
+      association :blue_team, factory: :team_with_players
+      association :red_team, factory: :team_with_players
+    end
   end
 end
