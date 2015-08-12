@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706015242) do
+ActiveRecord::Schema.define(version: 20150812190454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20150706015242) do
     t.integer  "league_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "lolesports_id"
+    t.integer  "game_length"
+    t.integer  "match_id"
+    t.integer  "winner_id"
+    t.string   "legs_url"
+    t.integer  "game_number"
+    t.string   "youtube_url"
   end
 
   add_index "games", ["blue_team_id"], name: "index_games_on_blue_team_id", using: :btree

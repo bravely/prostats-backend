@@ -41,6 +41,35 @@ RSpec.describe Game, type: :model do
     it { should have_many(:plays) }
   end
 
+  describe '#lolesports_id' do
+    it { should have_db_column(:lolesports_id).of_type(:integer) }
+  end
+
+  describe '#game_length' do
+    it { should have_db_column(:game_length).of_type(:integer) }
+  end
+
+  describe '#match' do
+    pending
+    # it { should belong_to(:match) }
+  end
+
+  describe '#winner_id' do
+    it { should have_db_column(:winner_id).of_type(:integer) }
+  end
+
+  describe '#legs_url' do
+    it { should have_db_column(:legs_url).of_type(:string) }
+  end
+
+  describe '#game_number' do
+    it { should have_db_column(:game_number).of_type(:integer) }
+  end
+
+  describe '#youtube_url' do
+    it { should have_db_column(:youtube_url).of_type(:string) }
+  end
+
   describe '#blue_team_players' do
     context 'when no players are assigned' do
       let(:team) { FactoryGirl.create(:team_with_players) }
