@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812194800) do
+ActiveRecord::Schema.define(version: 20150813005016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,8 +77,24 @@ ActiveRecord::Schema.define(version: 20150812194800) do
     t.integer  "player_id"
     t.integer  "game_id"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "kills"
+    t.integer  "deaths"
+    t.integer  "assists"
+    t.decimal  "kda"
+    t.integer  "champion_id"
+    t.integer  "end_level"
+    t.integer  "total_gold"
+    t.integer  "minions_killed"
+    t.integer  "first_spell"
+    t.integer  "second_spell"
+    t.integer  "item0"
+    t.integer  "item1"
+    t.integer  "item2"
+    t.integer  "item3"
+    t.integer  "item4"
+    t.integer  "item5"
   end
 
   add_index "plays", ["game_id"], name: "index_plays_on_game_id", using: :btree
