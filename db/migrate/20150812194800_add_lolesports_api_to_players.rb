@@ -3,6 +3,7 @@ class AddLolesportsApiToPlayers < ActiveRecord::Migration
     change_table :players do |t|
       t.remove :real_name
 
+      t.integer :lolesports_id
       t.string :first_name
       t.string :last_name
       t.boolean :starter

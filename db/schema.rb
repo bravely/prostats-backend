@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20150813005016) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "team_id"
+    t.integer  "lolesports_id"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "starter"

@@ -76,6 +76,10 @@ RSpec.describe Player, type: :model do
     it { should have_db_column(:twitter_url).of_type(:string) }
   end
 
+  describe '#lolesports_id' do
+    it { is_expected.to have_db_column(:lolesports_id).of_type(:integer) }
+  end
+
   describe 'returns in the proper order' do
     let!(:shy) { FactoryGirl.create(:player, handle: 'Shy') }
     let!(:bjergerking) { FactoryGirl.create(:player, handle: 'Bjergsen') }
