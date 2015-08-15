@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
   belongs_to :blue_team, class_name: 'Team'
   belongs_to :red_team, class_name: 'Team'
   belongs_to :league
+  belongs_to :match
 
   after_create :assign_team_players
 

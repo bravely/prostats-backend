@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815055622) do
+ActiveRecord::Schema.define(version: 20150815060636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,16 @@ ActiveRecord::Schema.define(version: 20150815055622) do
     t.datetime "updated_at",    null: false
     t.integer  "lolesports_id"
     t.integer  "game_length"
-    t.integer  "match_id"
     t.integer  "winner_id"
     t.string   "legs_url"
     t.integer  "game_number"
     t.string   "youtube_url"
+    t.integer  "match_id"
   end
 
   add_index "games", ["blue_team_id"], name: "index_games_on_blue_team_id", using: :btree
   add_index "games", ["league_id"], name: "index_games_on_league_id", using: :btree
+  add_index "games", ["match_id"], name: "index_games_on_match_id", using: :btree
   add_index "games", ["played_at"], name: "index_games_on_played_at", using: :btree
   add_index "games", ["red_team_id"], name: "index_games_on_red_team_id", using: :btree
 
@@ -52,6 +53,26 @@ ActiveRecord::Schema.define(version: 20150815055622) do
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "lolesports_id"
+    t.datetime "played_at"
+    t.boolean  "live"
+    t.boolean  "finished"
+    t.integer  "max_games"
+    t.string   "name"
+    t.integer  "tournament_id"
+    t.integer  "winner_id"
+    t.integer  "blue_team_id"
+    t.integer  "red_team_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "matches", ["blue_team_id"], name: "index_matches_on_blue_team_id", using: :btree
+  add_index "matches", ["red_team_id"], name: "index_matches_on_red_team_id", using: :btree
+  add_index "matches", ["tournament_id"], name: "index_matches_on_tournament_id", using: :btree
+  add_index "matches", ["winner_id"], name: "index_matches_on_winner_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "handle"
@@ -143,6 +164,8 @@ ActiveRecord::Schema.define(version: 20150815055622) do
   add_index "tournaments", ["league_id"], name: "index_tournaments_on_league_id", using: :btree
   add_index "tournaments", ["series_id"], name: "index_tournaments_on_series_id", using: :btree
 
+  add_foreign_key "games", "matches"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "players", "teams"
   add_foreign_key "plays", "games"
   add_foreign_key "plays", "players"

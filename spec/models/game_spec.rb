@@ -50,8 +50,7 @@ RSpec.describe Game, type: :model do
   end
 
   describe '#match' do
-    pending
-    # it { should belong_to(:match) }
+    it { should belong_to(:match) }
   end
 
   describe '#winner_id' do
