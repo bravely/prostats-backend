@@ -16,4 +16,12 @@ RSpec.describe League, type: :model do
   describe '#teams' do
     it { should have_many(:teams) }
   end
+
+  describe '#lolesports_id' do
+    it { is_expected.to have_db_column(:lolesports_id).of_type(:integer) }
+  end
+
+  describe '#tournaments' do
+    it { is_expected.to have_many(:tournaments) }
+  end
 end
