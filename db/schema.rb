@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815020913) do
+ActiveRecord::Schema.define(version: 20150815022353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,17 @@ ActiveRecord::Schema.define(version: 20150815020913) do
   add_index "plays", ["player_id"], name: "index_plays_on_player_id", using: :btree
   add_index "plays", ["team_id"], name: "index_plays_on_team_id", using: :btree
 
+  create_table "series", force: :cascade do |t|
+    t.integer  "lolesports_id"
+    t.string   "name"
+    t.string   "season"
+    t.integer  "league_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "series", ["league_id"], name: "index_series_on_league_id", using: :btree
+
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
@@ -114,16 +125,19 @@ ActiveRecord::Schema.define(version: 20150815020913) do
   add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
   create_table "tournaments", force: :cascade do |t|
+    t.integer  "lolesports_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "name"
     t.boolean  "finished"
     t.integer  "league_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "series_id"
   end
 
   add_index "tournaments", ["league_id"], name: "index_tournaments_on_league_id", using: :btree
+  add_index "tournaments", ["series_id"], name: "index_tournaments_on_series_id", using: :btree
 
   add_foreign_key "players", "teams"
   add_foreign_key "plays", "games"

@@ -1,6 +1,7 @@
 class CreateTournaments < ActiveRecord::Migration
   def change
     create_table :tournaments do |t|
+      t.integer :lolesports_id
       t.datetime :starts_at
       t.datetime :ends_at
       t.string :name

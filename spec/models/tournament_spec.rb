@@ -20,4 +20,8 @@ RSpec.describe Tournament, type: :model do
   describe '#league' do
     it { is_expected.to belong_to(:league) }
   end
+
+  describe '#series' do
+    it { is_expected.to belong_to(:series) }
+  end
 end
