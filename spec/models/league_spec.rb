@@ -24,4 +24,11 @@ RSpec.describe League, type: :model do
   describe '#tournaments' do
     it { is_expected.to have_many(:tournaments) }
   end
+
+  describe '#harvest', vcr: true do
+    let(:api_league) { LolesportsApi::League.find(1) }
+    let(:league) { League.harvest(api_league) }
+    it { expect(league.lolesports_id).to eq api_league.id }
+    it { expect(league.name).to eq api_league.label }
+  end
 end
