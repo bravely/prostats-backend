@@ -11,10 +11,10 @@ namespace :lolesports_api do
 
     if league.nil?
       league = League.new(lolesports_id: api_league.id).harvest(api_league)
-      puts "Created League: #{league.name}"
+      puts "Created League #{league.lolesports_id}: #{league.name}"
     else
       league.harvest(api_league)
-      puts "Updated League: #{league.name}"
+      puts "Updated League #{league.lolesports_id}: #{league.name}"
     end
 
     # Begin Series processing
@@ -24,7 +24,7 @@ namespace :lolesports_api do
       next if series.nil?
       api_series = LolesportsApi::Series.find(orig_series.id)
       series = Series.new(lolesports_id: api_series.id).harvest(api_series, league: league)
-      puts "Created Series: #{series.name}"
+      puts "Created Series #{series.lolesports_id}: #{series.name}"
     end
 
     # Begin Tournament processing
@@ -36,10 +36,12 @@ namespace :lolesports_api do
       api_tournament = LolesportsApi::Tournament.find(orig_tournament_id)
       if tournament.nil?
         tournament = Tournament.new(lolesports_id: api_tournament.id).harvest(api_tournament, league: league)
-        puts "Created Tournament: #{tournament.name}"
+        puts '---------------------------------------'
+        puts "Created Tournament #{tournament.lolesports_id}: #{tournament.name}"
       else
         tournament.harvest(api_tournament, league: league)
-        puts "Updated Tournament: #{tournament.name}"
+        puts '---------------------------------------'
+        puts "Updated Tournament #{tournament.lolesports_id}: #{tournament.name}"
       end
 
       # Begin Team Processing
@@ -49,10 +51,10 @@ namespace :lolesports_api do
         team = Team.find_by(lolesports_id: orig_team.id)
         if team.nil?
           team = Team.new(lolesports_id: orig_team.id).harvest(api_team, league: league)
-          puts "Created Team: #{team.name}"
+          puts "Created Team #{team.lolesports_id}: #{team.name}"
         else
           team.harvest(api_team)
-          puts "Updated Team: #{team.name}"
+          puts "Updated Team #{team.lolesports_id}: #{team.name}"
         end
         teams << team
 
@@ -60,11 +62,11 @@ namespace :lolesports_api do
         api_team.roster.each do |orig_player|
           player = Player.find_by(lolesports_id: orig_player.id)
           if player.nil?
-            player = Player.new(orig_player.id).harvest
-            puts "Created Player: #{player.handle}"
+            player = Player.new(lolesports_id: orig_player.id).harvest
+            puts "Created Player #{player.lolesports_id}: #{player.handle}"
           elsif player.updated_at > 24.hours.ago
             player.harvest
-            puts "Updated Player: #{player.handle}"
+            puts "Updated Player #{player.lolesports_id}: #{player.handle}"
           end
 
           team.players << player

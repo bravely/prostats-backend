@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 17 Aug 2015 06:43:00 GMT
+      - Thu, 20 Aug 2015 03:58:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -27,16 +27,16 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=df4a2d42918dfceefd696d7bef5d6b3cf1439793779; expires=Tue, 16-Aug-16
-        06:42:59 GMT; path=/; domain=.lolesports.com; HttpOnly
+      - __cfduid=d3429f9800f44aafc4d158ed7070777241440043121; expires=Fri, 19-Aug-16
+        03:58:41 GMT; path=/; domain=.lolesports.com; HttpOnly
       Cache-Control:
       - public, max-age=1800
       Etag:
-      - '"1439793783-1"'
+      - '"1440042584-1"'
       Expires:
-      - Mon, 17 Aug 2015 07:13:00 GMT
+      - Thu, 20 Aug 2015 04:28:41 GMT
       Last-Modified:
-      - Mon, 17 Aug 2015 06:43:03 GMT
+      - Thu, 20 Aug 2015 03:49:44 GMT
       Vary:
       - Accept-Encoding
       Via:
@@ -44,17 +44,17 @@ http_interactions:
       X-Drupal-Cache:
       - MISS
       X-Varnish:
-      - '211835888'
+      - '525152975'
       X-Varnish-Cache:
       - MISS
       Cf-Cache-Status:
-      - EXPIRED
+      - HIT
       Accept-Ranges:
       - bytes
       Server:
       - cloudflare-nginx
       Cf-Ray:
-      - 217366f1f43a283a-SJC
+      - 218b2e6695fe0701-SJC
     body:
       encoding: ASCII-8BIT
       string: '{"name":"Meteos","bio":"William \u201cMeteos\u201d Hartman is the jungler
@@ -65,5 +65,5 @@ http_interactions:
         in the LCS. However, the NA LCS has become more competitive than ever, and
         C9 is no longer guaranteed their spot at the top. ","firstname":"William","lastName":"Hartman","hometown":"USA","facebookUrl":null,"twitterUrl":null,"teamId":304,"profileUrl":"http://na.lolesports.com/node/329","role":"Jungler","roleId":"1","photoUrl":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/C9-Meteos-2015Summer.jpg","isStarter":0,"residency":null,"contractExpiration":"2016-11-21T00:00:00+00:00"}'
     http_version: 
-  recorded_at: Mon, 17 Aug 2015 06:43:00 GMT
+  recorded_at: Thu, 20 Aug 2015 03:58:41 GMT
 recorded_with: VCR 2.9.3

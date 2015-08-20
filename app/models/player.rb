@@ -20,18 +20,20 @@ class Player < ActiveRecord::Base
   has_many :plays
   has_many :games, through: :plays
 
-  def self.harvest(lolesports_player)
-    find_or_initialize_by(lolesports_id: lolesports_player.id) do |player|
-      player.handle = lolesports_player.name
-      player.first_name = lolesports_player.first_name
-      player.last_name = lolesports_player.last_name
-      player.hometown = lolesports_player.hometown
-      # player.contract_expires_at = lolesports_player.contract_expires_at
-      player.residency = lolesports_player.residency
+  def harvest(api_player = nil, additional_values = {})
+    api_player = LolesportsApi::Player.find(lolesports_id) unless api_player
+    update_hash = {
+      handle: api_player.name,
+      first_name: api_player.first_name,
+      last_name: api_player.last_name,
+      hometown: api_player.hometown,
+      contract_expires_at: api_player.contract_expiration,
+      residency: api_player.residency,
 
-      player.starter = lolesports_player.is_starter == 1 ? true : false
-      player.position = LOLESPORTS_ROLE[lolesports_player.role]
-      player.save
-    end
+      starter: (api_player.is_starter == 1 ? true : false),
+      position: LOLESPORTS_ROLE[api_player.role]
+    }.merge(additional_values)
+    update!(update_hash)
+    self
   end
 end

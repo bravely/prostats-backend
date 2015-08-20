@@ -87,11 +87,27 @@ RSpec.describe Player, type: :model do
     it { expect(Player.all).to eq [bjergerking, shy] }
   end
 
-  describe '.harvest', vcr: true do
-    let(:api_player) { LolesportsApi::Player.find(329) }
-    let(:player) { Player.harvest(api_player) }
-    it { expect(player.lolesports_id).to eq api_player.id }
-    it { expect(player.position).to eq Player::LOLESPORTS_ROLE[api_player.role].to_s }
-    it { expect(player.handle).to eq api_player.name }
+  describe '#harvest', vcr: true do
+    context 'when an api object is provided' do
+      let(:api_player) { LolesportsApi::Player.find(329) }
+      let(:player) { Player.new(lolesports_id: api_player.id).harvest(api_player) }
+      it { expect(player.lolesports_id).to eq api_player.id }
+      it { expect(player.position).to eq Player::LOLESPORTS_ROLE[api_player.role].to_s }
+      it { expect(player.handle).to eq api_player.name }
+    end
+    context 'when an api object is not provided' do
+      let(:api_player) { LolesportsApi::Player.find(329) }
+      let(:player) { Player.new(lolesports_id: api_player.id).harvest }
+      it { expect(player.lolesports_id).to eq api_player.id }
+      it { expect(player.position).to eq Player::LOLESPORTS_ROLE[api_player.role].to_s }
+      it { expect(player.handle).to eq api_player.name }
+    end
+    context 'when a hash is provided' do
+      let(:api_player) { LolesportsApi::Player.find(329) }
+      let(:player) { Player.new(lolesports_id: api_player.id).harvest(api_player, handle: 'Cliff') }
+      it { expect(player.lolesports_id).to eq api_player.id }
+      it { expect(player.position).to eq Player::LOLESPORTS_ROLE[api_player.role].to_s }
+      it { expect(player.handle).to eq 'Cliff' }
+    end
   end
 end
