@@ -1,7 +1,7 @@
 class CreateSeries < ActiveRecord::Migration
   def change
     create_table :series do |t|
-      t.integer :lolesports_id
+      t.integer :lolesports_id, index: true
       t.string :name
       t.string :season
       t.belongs_to :league, index: true

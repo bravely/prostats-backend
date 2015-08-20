@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815060636) do
+ActiveRecord::Schema.define(version: 20150817181255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contestants", force: :cascade do |t|
+    t.integer  "tournament_id"
+    t.integer  "team_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "contestants", ["team_id"], name: "index_contestants_on_team_id", using: :btree
+  add_index "contestants", ["tournament_id"], name: "index_contestants_on_tournament_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.datetime "played_at"
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150815060636) do
   end
 
   add_index "matches", ["blue_team_id"], name: "index_matches_on_blue_team_id", using: :btree
+  add_index "matches", ["lolesports_id"], name: "index_matches_on_lolesports_id", using: :btree
   add_index "matches", ["red_team_id"], name: "index_matches_on_red_team_id", using: :btree
   add_index "matches", ["tournament_id"], name: "index_matches_on_tournament_id", using: :btree
   add_index "matches", ["winner_id"], name: "index_matches_on_winner_id", using: :btree
@@ -129,11 +140,13 @@ ActiveRecord::Schema.define(version: 20150815060636) do
     t.string   "name"
     t.string   "season"
     t.integer  "league_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "finished",      default: false
   end
 
   add_index "series", ["league_id"], name: "index_series_on_league_id", using: :btree
+  add_index "series", ["lolesports_id"], name: "index_series_on_lolesports_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
@@ -156,13 +169,17 @@ ActiveRecord::Schema.define(version: 20150815060636) do
     t.string   "name"
     t.boolean  "finished"
     t.integer  "league_id"
+    t.integer  "winner_id"
+    t.string   "season"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "series_id"
   end
 
   add_index "tournaments", ["league_id"], name: "index_tournaments_on_league_id", using: :btree
+  add_index "tournaments", ["lolesports_id"], name: "index_tournaments_on_lolesports_id", using: :btree
   add_index "tournaments", ["series_id"], name: "index_tournaments_on_series_id", using: :btree
+  add_index "tournaments", ["winner_id"], name: "index_tournaments_on_winner_id", using: :btree
 
   add_foreign_key "games", "matches"
   add_foreign_key "matches", "tournaments"

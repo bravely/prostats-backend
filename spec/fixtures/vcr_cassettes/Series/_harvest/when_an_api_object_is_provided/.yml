@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://na.lolesports.com/api/series/20.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Aug 2015 06:13:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '146'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dd983bf8db97e451668c040f2d864fa751439964815; expires=Thu, 18-Aug-16
+        06:13:35 GMT; path=/; domain=.lolesports.com; HttpOnly
+      Cache-Control:
+      - public, max-age=1800
+      Etag:
+      - '"1439964815-1"'
+      Expires:
+      - Wed, 19 Aug 2015 06:43:35 GMT
+      Last-Modified:
+      - Wed, 19 Aug 2015 06:13:35 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Drupal-Cache:
+      - MISS
+      X-Varnish:
+      - '524676030'
+      X-Varnish-Cache:
+      - MISS
+      Cf-Cache-Status:
+      - HIT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2183b69e4e05288e-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"labelPublic":"NA LCS Expansion","season":"2015","label":"NA LCS Expansion","id":"20","url":"http://na.lolesports.com/tourney/series/20","tournaments":["181","184","185"]}'
+    http_version: 
+  recorded_at: Wed, 19 Aug 2015 06:13:35 GMT
+recorded_with: VCR 2.9.3

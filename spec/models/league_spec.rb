@@ -26,9 +26,17 @@ RSpec.describe League, type: :model do
   end
 
   describe '#harvest', vcr: true do
-    let(:api_league) { LolesportsApi::League.find(1) }
-    let(:league) { League.harvest(api_league) }
-    it { expect(league.lolesports_id).to eq api_league.id }
-    it { expect(league.name).to eq api_league.label }
+    context 'when no api object is provided' do
+      let(:api_league) { LolesportsApi::League.find(1) }
+      let(:league) { League.new(lolesports_id: api_league.id).harvest }
+      it { expect(league.lolesports_id).to eq api_league.id }
+      it { expect(league.name).to eq api_league.label }
+    end
+    context 'when an api object is provided' do
+      let(:api_league) { LolesportsApi::League.find(1) }
+      let(:league) { League.new(lolesports_id: api_league.id).harvest(api_league) }
+      it { expect(league.lolesports_id).to eq api_league.id }
+      it { expect(league.name).to eq api_league.label }
+    end
   end
 end

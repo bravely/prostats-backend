@@ -1,7 +1,7 @@
 class CreateMatches < ActiveRecord::Migration
   def change
     create_table :matches do |t|
-      t.integer :lolesports_id
+      t.integer :lolesports_id, index: true
       t.datetime :played_at
       t.boolean :live
       t.boolean :finished

@@ -24,4 +24,25 @@ RSpec.describe Tournament, type: :model do
   describe '#series' do
     it { is_expected.to belong_to(:series) }
   end
+
+  describe '#harvest', vcr: true do
+    context 'when an api object is not provided' do
+      let(:api_tournament) { LolesportsApi::Tournament.find(184) }
+      let(:tournament) { Tournament.new(lolesports_id: api_tournament.id).harvest }
+      it { expect(tournament.name).to eq 'NA Expansion Upper' }
+      it { expect(tournament.finished?).to eq true }
+    end
+    context 'when an api object is provided' do
+      let(:api_tournament) { LolesportsApi::Tournament.find(184) }
+      let(:tournament) { Tournament.new(lolesports_id: api_tournament.id).harvest(api_tournament) }
+      it { expect(tournament.name).to eq 'NA Expansion Upper' }
+      it { expect(tournament.finished?).to eq true }
+    end
+    context 'when a hash is provided' do
+      let(:api_tournament) { LolesportsApi::Tournament.find(184) }
+      let(:tournament) { Tournament.new(lolesports_id: api_tournament.id).harvest(api_tournament, name: 'Test') }
+      it { expect(tournament.finished?).to eq true }
+      it { expect(tournament.name).to eq 'Test' }
+    end
+  end
 end

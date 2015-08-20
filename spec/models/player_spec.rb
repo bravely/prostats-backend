@@ -86,4 +86,12 @@ RSpec.describe Player, type: :model do
 
     it { expect(Player.all).to eq [bjergerking, shy] }
   end
+
+  describe '.harvest', vcr: true do
+    let(:api_player) { LolesportsApi::Player.find(329) }
+    let(:player) { Player.harvest(api_player) }
+    it { expect(player.lolesports_id).to eq api_player.id }
+    it { expect(player.position).to eq Player::LOLESPORTS_ROLE[api_player.role].to_s }
+    it { expect(player.handle).to eq api_player.name }
+  end
 end

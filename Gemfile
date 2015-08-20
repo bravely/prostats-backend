@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.3'
 gem 'pg'
 gem 'unicorn'
 gem 'active_model_serializers', '~>0.10.0.rc2'
 gem 'dotenv-rails'
 gem 'devise'
-gem 'lolesports-api', '0.1.2'
+gem 'lolesports-api', git: 'https://github.com/bravely/lolesports-api.git'
 
 group :development, :test do
   gem 'pry-rails'

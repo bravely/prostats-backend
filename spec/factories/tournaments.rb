@@ -4,5 +4,9 @@ FactoryGirl.define do
     ends_at { starts_at + 7.days }
     name { Faker::Company.catch_phrase }
     finished { ends_at.past? }
+
+    factory :tournament_that_finished do
+      # ends_at
+    end
   end
 end

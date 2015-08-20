@@ -32,4 +32,25 @@ RSpec.describe Team, type: :model do
   describe '#losses' do
     it { is_expected.to have_db_column(:losses).of_type(:integer).with_options(default: 0) }
   end
+
+  describe '.harvest', vcr: true do
+    context 'when an api object is provided' do
+      let(:api_team) { LolesportsApi::Team.find(304) }
+      let(:team) { Team.new(lolesports_id: api_team.id).harvest(api_team) }
+      it { expect(team.lolesports_id).to eq api_team.id }
+      it { expect(team.acronym).to eq 'C9' }
+    end
+    context 'when an api object is not provided' do
+      let(:api_team) { LolesportsApi::Team.find(304) }
+      let(:team) { Team.new(lolesports_id: api_team.id).harvest }
+      it { expect(team.lolesports_id).to eq api_team.id }
+      it { expect(team.acronym).to eq 'C9' }
+    end
+    context 'when a hash is provided' do
+      let(:api_team) { LolesportsApi::Team.find(304) }
+      let(:team) { Team.new(lolesports_id: api_team.id).harvest(api_team, acronym: 'Test') }
+      it { expect(team.lolesports_id).to eq api_team.id }
+      it { expect(team.acronym).to eq 'Test' }
+    end
+  end
 end
