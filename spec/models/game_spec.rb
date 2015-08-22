@@ -33,6 +33,10 @@ RSpec.describe Game, type: :model do
     it { should belong_to(:red_team) }
   end
 
+  describe '#winner' do
+    it { should belong_to(:winner) }
+  end
+
   describe '#players' do
     it { should have_many(:players) }
   end
@@ -104,6 +108,31 @@ RSpec.describe Game, type: :model do
         end
       end
       it { expect(game.red_team_players).to eq [player] }
+    end
+  end
+
+  describe '#harvest', vcr: true, focus: true do
+    context 'when an api object is not provided' do
+      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:game) { Game.new(lolesports_id: api_game.id).harvest }
+      it { expect(game.game_number).to eq api_game.game_number }
+      it { expect(game.legs_url).to eq api_game.legs_url }
+      it { expect(game.youtube_url).to eq api_game.youtube_url }
+      # it { expect(game.plays.size).to eq 10 }
+    end
+    context 'when an api object is provided' do
+      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:game) { Game.new(lolesports_id: api_game.id).harvest(api_game) }
+      it { expect(game.game_number).to eq api_game.game_number }
+      it { expect(game.legs_url).to eq api_game.legs_url }
+      it { expect(game.youtube_url).to eq api_game.youtube_url }
+    end
+    context 'when a hash is provided' do
+      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:game) { Game.new(lolesports_id: api_game.id).harvest(api_game, game_number: 48) }
+      it { expect(game.game_number).to eq 48 }
+      it { expect(game.legs_url).to eq api_game.legs_url }
+      it { expect(game.youtube_url).to eq api_game.youtube_url }
     end
   end
 end

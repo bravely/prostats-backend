@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/bravely/lolesports-api.git
-  revision: 76fd42b6d33bcfd1f07dd25b5304148d440d8fe9
+  revision: 821cf564c780af6d1224eabf7ae1410fcc379419
   specs:
-    lolesports-api (0.1.5)
+    lolesports-api (0.1.6)
       faraday (~> 0.9)
       json (~> 1.8)
 
@@ -260,6 +260,7 @@ GEM
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
     slop (3.6.0)
+    slowweb (0.1.1)
     spring (1.3.6)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -323,6 +324,7 @@ DEPENDENCIES
   should_not
   shoulda-matchers
   simplecov
+  slowweb
   spring
   spring-commands-rspec
   unicorn

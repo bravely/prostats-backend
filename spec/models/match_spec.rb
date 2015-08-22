@@ -40,4 +40,25 @@ RSpec.describe Match, type: :model do
   describe '#red_team' do
     it { is_expected.to belong_to(:red_team) }
   end
+
+  describe '#harvest', vcr: true do
+    context 'when an api object is not provided' do
+      let(:api_match) { LolesportsApi::Match.find(5334) }
+      let(:match) { Match.new(lolesports_id: api_match.id).harvest }
+      it { expect(match.name).to eq api_match.name }
+      it { expect(match.finished).to eq true }
+    end
+    context 'when an api object is provided' do
+      let(:api_match) { LolesportsApi::Match.find(5334) }
+      let(:match) { Match.new(lolesports_id: api_match.id).harvest(api_match) }
+      it { expect(match.name).to eq api_match.name }
+      it { expect(match.finished).to eq true }
+    end
+    context 'when a hash is provided' do
+      let(:api_match) { LolesportsApi::Match.find(5334) }
+      let(:match) { Match.new(lolesports_id: api_match.id).harvest(api_match, name: 'Test') }
+      it { expect(match.finished).to eq true }
+      it { expect(match.name).to eq 'Test' }
+    end
+  end
 end
