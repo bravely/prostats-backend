@@ -111,28 +111,48 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  describe '#harvest', vcr: true, focus: true do
+  describe '#harvest', vcr: true do
     context 'when an api object is not provided' do
-      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:api_game) do
+        LolesportsApi::Game.find(7069).tap do |game|
+          game.players.each do |play|
+            FactoryGirl.create(:player, lolesports_id: play.player_id)
+          end
+        end
+      end
       let(:game) { Game.new(lolesports_id: api_game.id).harvest }
       it { expect(game.game_number).to eq api_game.game_number }
       it { expect(game.legs_url).to eq api_game.legs_url }
       it { expect(game.youtube_url).to eq api_game.youtube_url }
-      # it { expect(game.plays.size).to eq 10 }
+      it { expect(game.plays.size).to eq 10 }
     end
     context 'when an api object is provided' do
-      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:api_game) do
+        LolesportsApi::Game.find(7069).tap do |game|
+          game.players.each do |play|
+            FactoryGirl.create(:player, lolesports_id: play.player_id)
+          end
+        end
+      end
       let(:game) { Game.new(lolesports_id: api_game.id).harvest(api_game) }
       it { expect(game.game_number).to eq api_game.game_number }
       it { expect(game.legs_url).to eq api_game.legs_url }
       it { expect(game.youtube_url).to eq api_game.youtube_url }
+      it { expect(game.plays.size).to eq 10 }
     end
     context 'when a hash is provided' do
-      let(:api_game) { LolesportsApi::Game.find(7069) }
+      let(:api_game) do
+        LolesportsApi::Game.find(7069).tap do |game|
+          game.players.each do |play|
+            FactoryGirl.create(:player, lolesports_id: play.player_id)
+          end
+        end
+      end
       let(:game) { Game.new(lolesports_id: api_game.id).harvest(api_game, game_number: 48) }
       it { expect(game.game_number).to eq 48 }
       it { expect(game.legs_url).to eq api_game.legs_url }
       it { expect(game.youtube_url).to eq api_game.youtube_url }
+      it { expect(game.plays.size).to eq 10 }
     end
   end
 end

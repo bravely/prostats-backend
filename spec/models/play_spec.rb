@@ -82,4 +82,14 @@ RSpec.describe Play, type: :model do
   describe '#item5' do
     it { is_expected.to have_db_column(:item0).of_type(:integer) }
   end
+
+  describe '#harvest', vcr: true do
+    let(:player) { FactoryGirl.create(:player_with_team) }
+    let(:game) { FactoryGirl.create(:game) }
+    let(:api_play) { LolesportsApi::Game.find(7069).players[0] }
+    let(:play) { Play.new.harvest(api_play, game: game, player: player, team: player.team) }
+    it { expect(play.kills).to eq api_play.kills }
+    it { expect(play.kda).to eq api_play.kda }
+    it { expect(play.item0).to eq api_play.items[0] }
+  end
 end

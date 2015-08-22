@@ -26,6 +26,7 @@ class Game < ActiveRecord::Base
     players.where(id: red_team_plays.map(&:player_id))
   end
 
+  # rubocop:disable Metrics/AbcSize
   def harvest(api_game = nil, additional_values = {})
     api_game = LolesportsApi::Game.find(lolesports_id) unless api_game
     update_hash = {
@@ -40,8 +41,14 @@ class Game < ActiveRecord::Base
     }.merge(additional_values)
     update!(update_hash)
 
+    plays.destroy_all
+    api_game.players.each do |api_play|
+      plays << Play.new.harvest(api_play, game: self)
+    end
+
     self
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

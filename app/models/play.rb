@@ -8,6 +8,34 @@ class Play < ActiveRecord::Base
 
   before_create :set_team
 
+  # Note that Play#harvest REQUIRES an API object. This is
+  # because there is no API endpoint for this- it is part of
+  # the LolesportsApi::Game object.
+  # rubocop:disable Metrics/AbcSize
+  def harvest(api_play, additional_values)
+    update_hash = {
+      kills: api_play.kills,
+      deaths: api_play.deaths,
+      assists: api_play.assists,
+      kda: api_play.kda,
+      champion_id: api_play.champion_id,
+      end_level: api_play.end_level,
+      total_gold: api_play.total_gold,
+      minions_killed: api_play.minions_killed,
+      first_spell: api_play.spell0,
+      second_spell: api_play.spell1,
+      player: Player.find_by(lolesports_id: api_play.player_id),
+      team: Team.find_by(lolesports_id: api_play.team_id)
+    }
+    api_play.items.each_with_index do |item_id, i|
+      update_hash["item#{i}".to_sym] = item_id
+    end
+    update! update_hash.merge!(additional_values)
+
+    self
+  end
+  # rubocop:enable Metrics/AbcSize
+
   private
 
   def set_team

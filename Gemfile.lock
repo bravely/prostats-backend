@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bravely/lolesports-api.git
-  revision: 821cf564c780af6d1224eabf7ae1410fcc379419
+  revision: 8c60243757b476c050953ca78c5df63a21320378
   specs:
     lolesports-api (0.1.6)
       faraday (~> 0.9)

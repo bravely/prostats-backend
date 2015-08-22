@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 22 Aug 2015 16:21:56 GMT
+      - Sat, 22 Aug 2015 15:46:20 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -27,16 +27,16 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=df61021a6aaed01e1e7fb670385b40e491440260516; expires=Sun, 21-Aug-16
-        16:21:56 GMT; path=/; domain=.lolesports.com; HttpOnly
+      - __cfduid=d8d482c7fa2e9245cd779e967ab7d8c721440258379; expires=Sun, 21-Aug-16
+        15:46:19 GMT; path=/; domain=.lolesports.com; HttpOnly
       Cache-Control:
       - public, max-age=1800
       Etag:
-      - '"1440260029-1"'
+      - '"1440258383-1"'
       Expires:
-      - Sat, 22 Aug 2015 16:51:56 GMT
+      - Sat, 22 Aug 2015 16:16:20 GMT
       Last-Modified:
-      - Sat, 22 Aug 2015 16:13:49 GMT
+      - Sat, 22 Aug 2015 15:46:23 GMT
       Vary:
       - Accept-Encoding
       Via:
@@ -44,17 +44,17 @@ http_interactions:
       X-Drupal-Cache:
       - MISS
       X-Varnish:
-      - '337134930'
+      - '852748354'
       X-Varnish-Cache:
       - MISS
       Cf-Cache-Status:
-      - HIT
+      - EXPIRED
       Accept-Ranges:
       - bytes
       Server:
       - cloudflare-nginx
       Cf-Ray:
-      - 219fe9e3bcb31e83-SJC
+      - 219fb5b882900d85-SJC
     body:
       encoding: ASCII-8BIT
       string: '{"dateTime":null,"winnerId":"1","maxGames":"5","gameNumber":"1","gameLength":3196,"matchId":"5336","tournament":{"id":"241","name":"2015
@@ -62,5 +62,5 @@ http_interactions:
         Liquid","logoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/teamliquid-logo.png"},"red":{"id":"1","name":"Team
         SoloMid","logoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM%20logovector%20-white.png"}},"players":{"player0":{"id":11,"teamId":1,"name":"Dyrus","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Dyrus-2015Summer.jpg","kda":5.3333333333333,"kills":1,"deaths":3,"assists":15,"endLevel":18,"minionsKilled":232,"totalGold":14771,"spell0":"12","spell1":"4","items0":"3110","items1":"3800","items2":"3065","items3":"3075","items4":"1324","items5":"3211","championId":57},"player1":{"id":1873,"teamId":1,"name":"Santorin","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Santorin-2015Summer.jpg","kda":4.6666666666667,"kills":1,"deaths":3,"assists":13,"endLevel":18,"minionsKilled":120,"totalGold":13883,"spell0":"4","spell1":"11","items0":"2049","items1":"3190","items2":"3143","items3":"3709","items4":"1324","items5":"1031","championId":245},"player2":{"id":157,"teamId":1,"name":"Bjergsen","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-bjergsen-2015Summer.jpg","kda":8.5,"kills":7,"deaths":2,"assists":10,"endLevel":18,"minionsKilled":500,"totalGold":22692,"spell0":"4","spell1":"1","items0":"3135","items1":"3089","items2":"3115","items3":"3116","items4":"1314","items5":"3001","championId":268},"player3":{"id":178,"teamId":1,"name":"WildTurtle","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-WildTurtle-2015Summer.jpg","kda":15,"kills":10,"deaths":0,"assists":5,"endLevel":18,"minionsKilled":465,"totalGold":22462,"spell0":"4","spell1":"7","items0":"3139","items1":"3046","items2":"3031","items3":"1301","items4":"3035","items5":"3072","championId":222},"player4":{"id":935,"teamId":1,"name":"Lustboy","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Lustboy-2015Summer.jpg","kda":4.3333333333333,"kills":0,"deaths":3,"assists":13,"endLevel":18,"minionsKilled":43,"totalGold":12189,"spell0":"3","spell1":"4","items0":"3069","items1":"2045","items2":"3050","items3":"3010","items4":"3801","items5":"3117","championId":201},"player5":{"id":1158,"teamId":3654,"name":"Quas","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-quas-2015.jpg","kda":1.1428571428571,"kills":2,"deaths":7,"assists":6,"endLevel":18,"minionsKilled":349,"totalGold":16069,"spell0":"12","spell1":"4","items0":"3026","items1":"3143","items2":"3075","items3":"3155","items4":"1324","items5":"3071","championId":150},"player6":{"id":1159,"teamId":3654,"name":"IWDominate","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-dominate-2015.jpg","kda":2.6666666666667,"kills":1,"deaths":3,"assists":7,"endLevel":17,"minionsKilled":149,"totalGold":13646,"spell0":"11","spell1":"4","items0":"3143","items1":"3065","items2":"2049","items3":"1319","items4":"3709","items5":"1031","championId":60},"player7":{"id":3663,"teamId":3654,"name":"FeniX","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-fenix-2015.jpg","kda":3.3333333333333,"kills":5,"deaths":3,"assists":5,"endLevel":18,"minionsKilled":456,"totalGold":19160,"spell0":"4","spell1":"14","items0":"3285","items1":"3174","items2":"3100","items3":"1314","items4":"3089","items5":"3135","championId":117},"player8":{"id":690,"teamId":3654,"name":"Piglet","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-piglet-2015.jpg","kda":1.6666666666667,"kills":2,"deaths":3,"assists":3,"endLevel":18,"minionsKilled":446,"totalGold":18683,"spell0":"4","spell1":"7","items0":"3153","items1":"3078","items2":"3140","items3":"3031","items4":"3035","items5":"1304","championId":96},"player9":{"id":12,"teamId":3654,"name":"Xpecial","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-xpecial-2015.jpg","kda":2.3333333333333,"kills":1,"deaths":3,"assists":6,"endLevel":16,"minionsKilled":41,"totalGold":10035,"spell0":"14","spell1":"4","items0":"3117","items1":"3190","items2":"3114","items3":"2043","items4":"3050","items5":"2049","championId":412}},"noVods":0,"legsUrl":"https://acs.leagueoflegends.com/v1/stats/game/TRLH1/1001340118?gameHash=a36c8ab58f36e52a"}'
     http_version: 
-  recorded_at: Sat, 22 Aug 2015 16:21:57 GMT
+  recorded_at: Sat, 22 Aug 2015 15:46:20 GMT
 recorded_with: VCR 2.9.3
