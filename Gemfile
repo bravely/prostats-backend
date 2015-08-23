@@ -6,7 +6,7 @@ gem 'unicorn'
 gem 'active_model_serializers', '~>0.10.0.rc2'
 gem 'dotenv-rails'
 gem 'devise'
-gem 'lolesports-api', git: 'https://github.com/bravely/lolesports-api.git'
+gem 'lolesports-api', path: '~/Documents/lolesports-api'
 gem 'slowweb'
 
 group :development, :test do

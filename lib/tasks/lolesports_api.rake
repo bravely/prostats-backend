@@ -66,10 +66,10 @@ namespace :lolesports_api do
         api_team.roster.each do |orig_player|
           player = Player.find_by(lolesports_id: orig_player.id)
           if player.nil?
-            player = Player.new(lolesports_id: orig_player.id).harvest
+            player = Player.new(lolesports_id: orig_player.id).harvest(nil, team: team)
             puts "Created Player #{player.lolesports_id}: #{player.handle}"
           elsif player.updated_at < 24.hours.ago
-            player.harvest
+            player.harvest(nil, team: team)
             puts "Updated Player #{player.lolesports_id}: #{player.handle}"
           end
 
@@ -91,11 +91,11 @@ namespace :lolesports_api do
 
         match = Match.find_by(lolesports_id: api_match.id)
         if match.nil?
-          match = Match.new(lolesports_id: api_match.id).harvest(api_match)
+          match = Match.new(lolesports_id: api_match.id).harvest(api_match, tournament: tournament)
           puts '----------------------------------------'
           puts "Created Match #{match.lolesports_id}: #{match.name} #{match.played_at.to_formatted_s(:long)}"
         else
-          match.harvest(api_match)
+          match.harvest(api_match, tournament: tournament)
           puts '----------------------------------------'
           puts "Updated Match #{match.lolesports_id}: #{match.name} #{match.played_at.to_formatted_s(:long)}"
         end
@@ -107,7 +107,7 @@ namespace :lolesports_api do
             game = Game.new(lolesports_id: api_game.id, match: match, league: league).harvest
             puts "Created Game #{game.lolesports_id}: #{match.name} #{game.game_number}"
           elsif !game.winner
-            game.harvest
+            game.harvest(nil, match: match, league: league)
             puts "Updated Game #{game.lolesports_id}: #{match.name} #{game.game_number}"
           end
         end
