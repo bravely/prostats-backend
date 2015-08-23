@@ -3,6 +3,7 @@ class Match < ActiveRecord::Base
   belongs_to :blue_team, class_name: 'Team'
   belongs_to :red_team, class_name: 'Team'
   belongs_to :winner, class_name: 'Team'
+  has_many :games
 
   def harvest(api_match = nil, additional_values = {})
     api_match = LolesportsApi::Match.find(lolesports_id) unless api_match
@@ -12,8 +13,8 @@ class Match < ActiveRecord::Base
       finished: api_match.is_finished,
       max_games: api_match.max_games,
       name: api_match.name,
-      blue_team: Team.find_by(lolesports_id: api_match.blue_team.id),
-      red_team: Team.find_by(lolesports_id: api_match.red_team.id),
+      blue_team: Team.find_by(lolesports_id: api_match.blue_team.try(:id)),
+      red_team: Team.find_by(lolesports_id: api_match.red_team.try(:id)),
       winner: Team.find_by(lolesports_id: api_match.winner_id)
     }.merge(additional_values)
     update!(update_hash)

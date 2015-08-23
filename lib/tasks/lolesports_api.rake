@@ -49,13 +49,15 @@ namespace :lolesports_api do
       # Begin Team Processing
       teams = []
       api_tournament.contestants.each do |orig_team|
-        api_team = LolesportsApi::Team.find(orig_team.id)
         team = Team.find_by(lolesports_id: orig_team.id)
+        next if team && team.updated_at > 24.hours.ago
+
+        api_team = LolesportsApi::Team.find(orig_team.id)
         if team.nil?
-          team = Team.new(lolesports_id: orig_team.id).harvest(api_team, league: league)
+          team = Team.new(lolesports_id: orig_team.id).harvest(nil, league: league)
           puts "Created Team #{team.lolesports_id}: #{team.name}"
         elsif team.updated_at < 24.hours.ago
-          team.harvest(api_team)
+          team.harvest(nil, league: league)
           puts "Updated Team #{team.lolesports_id}: #{team.name}"
         end
         teams << team
@@ -84,6 +86,9 @@ namespace :lolesports_api do
       uncompleted_matches = api_tournament.matches.reject { |m| finished_matches.include?(m.id) }
 
       uncompleted_matches.each do |api_match|
+        # There are phantom matches. They must be avoided.
+        next if api_match.date_time == DateTime.parse('1970-01-01T00:00Z').utc
+
         match = Match.find_by(lolesports_id: api_match.id)
         if match.nil?
           match = Match.new(lolesports_id: api_match.id).harvest(api_match)
@@ -96,7 +101,7 @@ namespace :lolesports_api do
         end
 
         # Begin Game processing
-        api_match.games do |api_game|
+        api_match.games.each do |api_game|
           game = Game.find_by(lolesports_id: api_game.id)
           if game.nil?
             game = Game.new(lolesports_id: api_game.id, match: match, league: league).harvest

@@ -13,6 +13,8 @@ class Play < ActiveRecord::Base
   # the LolesportsApi::Game object.
   # rubocop:disable Metrics/AbcSize
   def harvest(api_play, additional_values)
+    the_player = Player.find_by(lolesports_id: api_play.player_id)
+    the_player = Player.new(lolesports_id: api_play.player_id).harvest unless the_player
     update_hash = {
       kills: api_play.kills,
       deaths: api_play.deaths,
@@ -24,14 +26,11 @@ class Play < ActiveRecord::Base
       minions_killed: api_play.minions_killed,
       first_spell: api_play.spell0,
       second_spell: api_play.spell1,
-      player: Player.find_by(lolesports_id: api_play.player_id),
+      player: the_player,
       team: Team.find_by(lolesports_id: api_play.team_id)
     }
-    api_play.items.each_with_index do |item_id, i|
-      update_hash["item#{i}".to_sym] = item_id
-    end
+    api_play.items.each_with_index { |item_id, i| update_hash["item#{i}".to_sym] = item_id }
     update! update_hash.merge!(additional_values)
-
     self
   end
   # rubocop:enable Metrics/AbcSize
