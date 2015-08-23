@@ -4,11 +4,11 @@ class Api::V1::LeaguesController < ApplicationController
   def index
     @leagues = League.all
 
-    render json: @leagues, include: ['teams']
+    render json: @leagues
   end
 
   def show
-    render json: @league, include: ['teams']
+    render json: @league, include: %w(series tournaments)
   end
 
   private

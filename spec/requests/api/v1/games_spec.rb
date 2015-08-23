@@ -21,12 +21,6 @@ RSpec.describe 'Games API', type: :request do
     it { expect(response).to be_success }
     it { expect(response.content_type).to eq 'application/json' }
     it { expect(json['data']['id'].to_i).to eq game.id }
-    it 'includes all relevant plays' do
-      expect(
-        json['included'].map do |e|
-          e['id'].to_i if e['type'] == 'plays'
-        end.compact
-      ).to include(*game.plays.map(&:id))
-    end
+    it { expect(json_included_ids('plays')).to include(*game.plays.map(&:id)) }
   end
 end
