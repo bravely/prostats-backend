@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Leagues', type: :request do
+RSpec.describe 'Api::V1::Leagues', type: :request do
   describe 'GET /api/leagues' do
     let!(:league_one) { FactoryGirl.create(:league_with_series_and_tournaments) }
     let!(:league_two) { FactoryGirl.create(:league_with_series_and_tournaments) }

@@ -40,6 +40,8 @@ module Prostats
       g.helper_specs false
       g.view_specs false
       g.assets false
+      g.controller_specs false
+      g.template_engine false
     end
   end
 end

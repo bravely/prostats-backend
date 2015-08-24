@@ -10,5 +10,15 @@ FactoryGirl.define do
     factory :match_with_winner do
       association :winner, factory: :team
     end
+
+    factory :match_with_games do
+      transient do
+        games_count 5
+      end
+
+      after(:create) do |match, evaluator|
+        create_list(:game, evaluator.games_count, match: match)
+      end
+    end
   end
 end

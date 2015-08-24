@@ -3,6 +3,8 @@ class Tournament < ActiveRecord::Base
   belongs_to :series
   has_many :contestants
   has_many :teams, through: :contestants
+  has_many :matches
+  has_many :games, through: :matches
   belongs_to :winner, class_name: 'Team'
 
   def harvest(api_tournament = nil, additional_values = {})

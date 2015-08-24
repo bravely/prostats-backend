@@ -25,6 +25,14 @@ RSpec.describe Tournament, type: :model do
     it { is_expected.to belong_to(:series) }
   end
 
+  describe '#matches' do
+    it { is_expected.to have_many(:matches) }
+  end
+
+  describe '#games' do
+    it { is_expected.to have_many(:games) }
+  end
+
   describe '#harvest', vcr: true do
     context 'when an api object is not provided' do
       let(:api_tournament) { LolesportsApi::Tournament.find(184) }
