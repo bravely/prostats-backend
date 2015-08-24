@@ -12,4 +12,12 @@ class Team < ActiveRecord::Base
     update!(update_hash)
     self
   end
+
+  def games
+    Game.where('blue_team_id = ? OR red_team_id = ?', id, id)
+  end
+
+  def matches
+    Match.where('blue_team_id = ? OR red_team_id = ?', id, id)
+  end
 end
