@@ -5,4 +5,5 @@ class MatchSerializer < ActiveModel::Serializer
   belongs_to :blue_team
   belongs_to :red_team
   belongs_to :winner
+  has_many :games
 end
