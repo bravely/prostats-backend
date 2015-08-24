@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :leagues, only: [:index, :show], defaults: { format: :json }
       resources :tournaments, only: [:show], defaults: { format: :json }
       resources :matches, only: [:show], defaults: { format: :json }
-      resources :games, only: [:index, :show], defaults: { format: :json }
+      resources :games, only: [:show], defaults: { format: :json }
       resources :teams, only: [:index, :show], defaults: { format: :json }
       resources :players, only: [:index, :show], defaults: { format: :json }
     end
