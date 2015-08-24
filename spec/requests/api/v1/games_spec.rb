@@ -9,7 +9,7 @@ RSpec.describe 'Games API', type: :request do
     it { expect(response).to be_success }
     it { expect(response.content_type).to eq 'application/json' }
     it { expect(json['data']['id'].to_i).to eq game.id }
-    it { expect(json_included_ids('plays')).to include(*game.plays.map(&:id)) }
-    it { expect(json_included_ids('players')).to include(*game.players.map(&:id)) }
+    it { expect(json_included_ids('plays')).to include(*game.plays.pluck(:id)) }
+    it { expect(json_included_ids('players')).to include(*game.players.pluck(:id)) }
   end
 end

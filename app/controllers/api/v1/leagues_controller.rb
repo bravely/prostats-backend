@@ -8,7 +8,7 @@ class Api::V1::LeaguesController < ApplicationController
   end
 
   def show
-    render json: @league, include: %w(series tournaments)
+    render json: @league, include: ['series']
   end
 
   private

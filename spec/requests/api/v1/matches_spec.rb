@@ -9,6 +9,6 @@ RSpec.describe 'Api::V1::Matches', type: :request do
     it { expect(response).to be_success }
     it { expect(response.content_type).to eq 'application/json' }
     it { expect(json['data']['id'].to_i).to eq match.id }
-    it { expect(json_included_ids('games')).to include(*match.games.map(&:id)) }
+    it { expect(json_included_ids('games')).to include(*match.games.pluck(:id)) }
   end
 end

@@ -8,7 +8,7 @@ class Api::V1::TeamsController < ApplicationController
   end
 
   def show
-    render json: @team, include: %w(players matches)
+    render json: @team, include: ['players']
   end
 
   private

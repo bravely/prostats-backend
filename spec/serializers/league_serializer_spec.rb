@@ -23,7 +23,7 @@ RSpec.describe LeagueSerializer, type: :serializer do
     expect(subject['relationships']['series']['data'].length).to eq league.series.size
   end
 
-  it 'has tournament relationships' do
-    expect(subject['relationships']['tournaments']['data'].length).to eq league.tournaments.size
-  end
+  # it 'has tournament relationships' do
+  #   expect(subject['relationships']['tournaments']['data'].length).to eq league.tournaments.size
+  # end
 end

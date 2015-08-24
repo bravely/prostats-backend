@@ -21,6 +21,6 @@ RSpec.describe 'Api::V1::Leagues', type: :request do
     it { expect(response.content_type).to eq 'application/json' }
     it { expect(json['data']['id'].to_i).to eq league.id }
     it { expect(json_included_ids('series')).to include(*league.series.map(&:id)) }
-    it { expect(json_included_ids('tournaments')).to include(*league.tournaments.map(&:id)) }
+    # it { expect(json_included_ids('tournaments')).to include(*league.tournaments.map(&:id)) }
   end
 end

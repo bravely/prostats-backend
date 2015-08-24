@@ -2,7 +2,7 @@ class Api::V1::TournamentsController < ApplicationController
   before_action :find_tournament, only: [:show]
 
   def show
-    render json: @tournament, include: %w(matches games)
+    render json: @tournament
   end
 
   private
