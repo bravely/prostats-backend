@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706015242) do
+ActiveRecord::Schema.define(version: 20150817181255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contestants", force: :cascade do |t|
+    t.integer  "tournament_id"
+    t.integer  "team_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "contestants", ["team_id"], name: "index_contestants_on_team_id", using: :btree
+  add_index "contestants", ["tournament_id"], name: "index_contestants_on_tournament_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.datetime "played_at"
@@ -28,10 +38,18 @@ ActiveRecord::Schema.define(version: 20150706015242) do
     t.integer  "league_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "lolesports_id"
+    t.integer  "game_length"
+    t.integer  "winner_id"
+    t.string   "legs_url"
+    t.integer  "game_number"
+    t.string   "youtube_url"
+    t.integer  "match_id"
   end
 
   add_index "games", ["blue_team_id"], name: "index_games_on_blue_team_id", using: :btree
   add_index "games", ["league_id"], name: "index_games_on_league_id", using: :btree
+  add_index "games", ["match_id"], name: "index_games_on_match_id", using: :btree
   add_index "games", ["played_at"], name: "index_games_on_played_at", using: :btree
   add_index "games", ["red_team_id"], name: "index_games_on_red_team_id", using: :btree
 
@@ -39,21 +57,51 @@ ActiveRecord::Schema.define(version: 20150706015242) do
     t.string   "name"
     t.string   "region"
     t.string   "abbr"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "lolesports_id"
   end
 
   add_index "leagues", ["name"], name: "index_leagues_on_name", using: :btree
 
+  create_table "matches", force: :cascade do |t|
+    t.integer  "lolesports_id"
+    t.datetime "played_at"
+    t.boolean  "live"
+    t.boolean  "finished"
+    t.integer  "max_games"
+    t.string   "name"
+    t.integer  "tournament_id"
+    t.integer  "winner_id"
+    t.integer  "blue_team_id"
+    t.integer  "red_team_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "matches", ["blue_team_id"], name: "index_matches_on_blue_team_id", using: :btree
+  add_index "matches", ["lolesports_id"], name: "index_matches_on_lolesports_id", using: :btree
+  add_index "matches", ["red_team_id"], name: "index_matches_on_red_team_id", using: :btree
+  add_index "matches", ["tournament_id"], name: "index_matches_on_tournament_id", using: :btree
+  add_index "matches", ["winner_id"], name: "index_matches_on_winner_id", using: :btree
+
   create_table "players", force: :cascade do |t|
     t.string   "handle"
-    t.string   "real_name"
     t.integer  "position"
     t.integer  "season_wins"
     t.integer  "season_losses"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "team_id"
+    t.integer  "lolesports_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "starter"
+    t.string   "hometown"
+    t.datetime "contract_expires_at"
+    t.string   "residency"
+    t.string   "facebook_url"
+    t.string   "twitter_url"
   end
 
   add_index "players", ["handle"], name: "index_players_on_handle", using: :btree
@@ -63,24 +111,78 @@ ActiveRecord::Schema.define(version: 20150706015242) do
     t.integer  "player_id"
     t.integer  "game_id"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "kills"
+    t.integer  "deaths"
+    t.integer  "assists"
+    t.decimal  "kda"
+    t.integer  "champion_id"
+    t.integer  "end_level"
+    t.integer  "total_gold"
+    t.integer  "minions_killed"
+    t.integer  "first_spell"
+    t.integer  "second_spell"
+    t.integer  "item0"
+    t.integer  "item1"
+    t.integer  "item2"
+    t.integer  "item3"
+    t.integer  "item4"
+    t.integer  "item5"
   end
 
   add_index "plays", ["game_id"], name: "index_plays_on_game_id", using: :btree
   add_index "plays", ["player_id"], name: "index_plays_on_player_id", using: :btree
   add_index "plays", ["team_id"], name: "index_plays_on_team_id", using: :btree
 
+  create_table "series", force: :cascade do |t|
+    t.integer  "lolesports_id"
+    t.string   "name"
+    t.string   "season"
+    t.integer  "league_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "finished",      default: false
+  end
+
+  add_index "series", ["league_id"], name: "index_series_on_league_id", using: :btree
+  add_index "series", ["lolesports_id"], name: "index_series_on_lolesports_id", using: :btree
+
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "league_id"
+    t.integer  "lolesports_id"
+    t.string   "acronym"
+    t.integer  "wins",          default: 0
+    t.integer  "losses",        default: 0
   end
 
   add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
+  create_table "tournaments", force: :cascade do |t|
+    t.integer  "lolesports_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string   "name"
+    t.boolean  "finished"
+    t.integer  "league_id"
+    t.integer  "winner_id"
+    t.string   "season"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "series_id"
+  end
+
+  add_index "tournaments", ["league_id"], name: "index_tournaments_on_league_id", using: :btree
+  add_index "tournaments", ["lolesports_id"], name: "index_tournaments_on_lolesports_id", using: :btree
+  add_index "tournaments", ["series_id"], name: "index_tournaments_on_series_id", using: :btree
+  add_index "tournaments", ["winner_id"], name: "index_tournaments_on_winner_id", using: :btree
+
+  add_foreign_key "games", "matches"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "players", "teams"
   add_foreign_key "plays", "games"
   add_foreign_key "plays", "players"

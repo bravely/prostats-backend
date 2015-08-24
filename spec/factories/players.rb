@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :player do
     handle { Faker::Internet.user_name }
-    real_name { Faker::Name.name }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     position [nil, 'top', 'jungle', 'middle', 'marksman', 'support'].sample
     season_wins 2
     season_losses 1

@@ -4,7 +4,7 @@ require 'rails_helper'
 # here: http://eclips3.net/2015/01/24/testing-active-model-serializer-with-rspec/
 RSpec.describe TeamSerializer, type: :serializer do
   let(:player_count) { 6 }
-  let(:resource) { FactoryGirl.create(:team_with_players_and_league, player_count: player_count) }
+  let(:resource) { FactoryGirl.create(:team_with_players_and_matches, player_count: player_count) }
   let(:serializer) { TeamSerializer.new(resource) }
   let(:serialization) { ActiveModel::Serializer::Adapter.create(serializer) }
 

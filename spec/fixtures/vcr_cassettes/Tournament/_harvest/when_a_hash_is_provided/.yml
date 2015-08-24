@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://na.lolesports.com/api/tournament/184.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Aug 2015 17:48:25 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '258'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d18ce0a2b724951ee65e883c2610da91f1440006502; expires=Thu, 18-Aug-16
+        17:48:22 GMT; path=/; domain=.lolesports.com; HttpOnly
+      Cache-Control:
+      - public, max-age=1800
+      Etag:
+      - '"1440006505-1"'
+      Expires:
+      - Wed, 19 Aug 2015 18:18:25 GMT
+      Last-Modified:
+      - Wed, 19 Aug 2015 17:48:25 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Drupal-Cache:
+      - MISS
+      X-Varnish:
+      - '1617930496'
+      X-Varnish-Cache:
+      - MISS
+      Cf-Cache-Status:
+      - EXPIRED
+      Accept-Ranges:
+      - bytes
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2187b05fdd682840-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"namePublic":"NA Expansion Upper","contestants":{"contestant1":{"id":"5","name":"Team
+        Coast","acronym":"CST"},"contestant2":{"id":"1252","name":"Curse Academy","acronym":"CA"},"contestant3":{"id":"3495","name":"Team
+        Fusion","acronym":"FSN"},"contestant4":{"id":"3498","name":"Vortex","acronym":"VTX"}},"isFinished":true,"dateBegin":"2014-11-11T01:15Z","dateEnd":"2014-11-11T01:15Z","noVods":0,"season":"2015","published":true,"winner":"1252","name":"Upper
+        Bracket"}'
+    http_version: 
+  recorded_at: Wed, 19 Aug 2015 17:48:26 GMT
+recorded_with: VCR 2.9.3

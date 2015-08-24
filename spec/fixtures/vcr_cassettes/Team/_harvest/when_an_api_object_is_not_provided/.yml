@@ -1,0 +1,133 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://na.lolesports.com/api/team/304.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Aug 2015 18:00:48 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '393'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d6061818e2adeae6a0acef5475bd42dc01440007248; expires=Thu, 18-Aug-16
+        18:00:48 GMT; path=/; domain=.lolesports.com; HttpOnly
+      Cache-Control:
+      - public, max-age=1800
+      Etag:
+      - '"1440006976-1"'
+      Expires:
+      - Wed, 19 Aug 2015 18:30:48 GMT
+      Last-Modified:
+      - Wed, 19 Aug 2015 17:56:16 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Drupal-Cache:
+      - MISS
+      X-Varnish:
+      - '1505268193'
+      X-Varnish-Cache:
+      - MISS
+      Cf-Cache-Status:
+      - HIT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2187c2945eb51207-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"name":"Cloud9 ","bio":null,"noPlayers":"0","roster":{"players0":{"playerId":"328","name":"Balls","role":"Top
+        Lane","isStarter":1},"players1":{"playerId":"330","name":"Hai","role":"Jungler","isStarter":1},"players2":{"playerId":"331","name":"Sneaky","role":"AD
+        Carry","isStarter":1},"players3":{"playerId":"332","name":"LemonNation","role":"Support","isStarter":1},"players4":{"playerId":"329","name":"Meteos","role":"Jungler","isStarter":0},"players5":{"playerId":"1144","name":"Westrice","role":"Top
+        Lane","isStarter":0},"players6":{"playerId":"4330","name":"Incarnati0n","role":"Mid
+        Lane","isStarter":1},"players7":{"playerId":"1313","name":"Sheep","role":"Support","isStarter":0},"players8":{"playerId":"1353","name":"Yusui","role":"Mid
+        Lane","isStarter":0},"players9":{"playerId":"2551","name":"Hard","role":"Jungler","isStarter":0}},"logoUrl":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/cloud9-logo.png","profileUrl":"http://na.lolesports.com/node/304","teamPhotoUrl":"http://na.lolesports.com/","acronym":"C9"}'
+    http_version: 
+  recorded_at: Wed, 19 Aug 2015 18:00:48 GMT
+- request:
+    method: get
+    uri: http://na.lolesports.com/api/team/304.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Aug 2015 18:00:48 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '393'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d4cfe91e1dcf129efeb59bdc6a17ac2a61440007248; expires=Thu, 18-Aug-16
+        18:00:48 GMT; path=/; domain=.lolesports.com; HttpOnly
+      Cache-Control:
+      - public, max-age=1800
+      Etag:
+      - '"1440006976-1"'
+      Expires:
+      - Wed, 19 Aug 2015 18:30:48 GMT
+      Last-Modified:
+      - Wed, 19 Aug 2015 17:56:16 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Drupal-Cache:
+      - MISS
+      X-Varnish:
+      - '1505268193'
+      X-Varnish-Cache:
+      - MISS
+      Cf-Cache-Status:
+      - HIT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2187c296015e0d8b-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"name":"Cloud9 ","bio":null,"noPlayers":"0","roster":{"players0":{"playerId":"328","name":"Balls","role":"Top
+        Lane","isStarter":1},"players1":{"playerId":"330","name":"Hai","role":"Jungler","isStarter":1},"players2":{"playerId":"331","name":"Sneaky","role":"AD
+        Carry","isStarter":1},"players3":{"playerId":"332","name":"LemonNation","role":"Support","isStarter":1},"players4":{"playerId":"329","name":"Meteos","role":"Jungler","isStarter":0},"players5":{"playerId":"1144","name":"Westrice","role":"Top
+        Lane","isStarter":0},"players6":{"playerId":"4330","name":"Incarnati0n","role":"Mid
+        Lane","isStarter":1},"players7":{"playerId":"1313","name":"Sheep","role":"Support","isStarter":0},"players8":{"playerId":"1353","name":"Yusui","role":"Mid
+        Lane","isStarter":0},"players9":{"playerId":"2551","name":"Hard","role":"Jungler","isStarter":0}},"logoUrl":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/cloud9-logo.png","profileUrl":"http://na.lolesports.com/node/304","teamPhotoUrl":"http://na.lolesports.com/","acronym":"C9"}'
+    http_version: 
+  recorded_at: Wed, 19 Aug 2015 18:00:48 GMT
+recorded_with: VCR 2.9.3

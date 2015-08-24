@@ -4,7 +4,9 @@ class Game < ActiveRecord::Base
 
   belongs_to :blue_team, class_name: 'Team'
   belongs_to :red_team, class_name: 'Team'
+  belongs_to :winner, class_name: 'Team'
   belongs_to :league
+  belongs_to :match
 
   after_create :assign_team_players
 
@@ -23,6 +25,30 @@ class Game < ActiveRecord::Base
   def red_team_players
     players.where(id: red_team_plays.map(&:player_id))
   end
+
+  # rubocop:disable Metrics/AbcSize
+  def harvest(api_game = nil, additional_values = {})
+    api_game = LolesportsApi::Game.find(lolesports_id) unless api_game
+    update_hash = {
+      played_at: api_game.date_time,
+      game_length: api_game.game_length,
+      game_number: api_game.game_number,
+      youtube_url: api_game.youtube_url,
+      legs_url: api_game.legs_url,
+      blue_team: Team.find_by(lolesports_id: api_game.blue_team.id),
+      red_team: Team.find_by(lolesports_id: api_game.red_team.id),
+      winner: Team.find_by(lolesports_id: api_game.winner_id)
+    }.merge(additional_values)
+    update!(update_hash)
+
+    plays.destroy_all
+    api_game.players.each do |api_play|
+      plays << Play.new.harvest(api_play, game: self)
+    end
+
+    self
+  end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

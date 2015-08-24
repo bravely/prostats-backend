@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://na.lolesports.com/api/game/7069.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 22 Aug 2015 16:21:53 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1242'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d0db1990328474f5897d11cd08cbed4d91440260513; expires=Sun, 21-Aug-16
+        16:21:53 GMT; path=/; domain=.lolesports.com; HttpOnly
+      Cache-Control:
+      - public, max-age=1800
+      Etag:
+      - '"1440260029-1"'
+      Expires:
+      - Sat, 22 Aug 2015 16:51:53 GMT
+      Last-Modified:
+      - Sat, 22 Aug 2015 16:13:49 GMT
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Drupal-Cache:
+      - MISS
+      X-Varnish:
+      - '337134930'
+      X-Varnish-Cache:
+      - MISS
+      Cf-Cache-Status:
+      - HIT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 219fe9d01f440651-SJC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"dateTime":null,"winnerId":"1","maxGames":"5","gameNumber":"1","gameLength":3196,"matchId":"5336","tournament":{"id":"241","name":"2015
+        NA LCS Summer Playoffs","round":"2"},"platformId":"TRLH1","platformGameId":1001340118,"vods":{"vod":{"type":"youtube","URL":"http://www.youtube.com/watch?v=bP0EnYAh49g","embedCode":null}},"contestants":{"blue":{"id":"3654","name":"Team
+        Liquid","logoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/teamliquid-logo.png"},"red":{"id":"1","name":"Team
+        SoloMid","logoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM%20logovector%20-white.png"}},"players":{"player0":{"id":11,"teamId":1,"name":"Dyrus","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Dyrus-2015Summer.jpg","kda":5.3333333333333,"kills":1,"deaths":3,"assists":15,"endLevel":18,"minionsKilled":232,"totalGold":14771,"spell0":"12","spell1":"4","items0":"3110","items1":"3800","items2":"3065","items3":"3075","items4":"1324","items5":"3211","championId":57},"player1":{"id":1873,"teamId":1,"name":"Santorin","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Santorin-2015Summer.jpg","kda":4.6666666666667,"kills":1,"deaths":3,"assists":13,"endLevel":18,"minionsKilled":120,"totalGold":13883,"spell0":"4","spell1":"11","items0":"2049","items1":"3190","items2":"3143","items3":"3709","items4":"1324","items5":"1031","championId":245},"player2":{"id":157,"teamId":1,"name":"Bjergsen","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-bjergsen-2015Summer.jpg","kda":8.5,"kills":7,"deaths":2,"assists":10,"endLevel":18,"minionsKilled":500,"totalGold":22692,"spell0":"4","spell1":"1","items0":"3135","items1":"3089","items2":"3115","items3":"3116","items4":"1314","items5":"3001","championId":268},"player3":{"id":178,"teamId":1,"name":"WildTurtle","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-WildTurtle-2015Summer.jpg","kda":15,"kills":10,"deaths":0,"assists":5,"endLevel":18,"minionsKilled":465,"totalGold":22462,"spell0":"4","spell1":"7","items0":"3139","items1":"3046","items2":"3031","items3":"1301","items4":"3035","items5":"3072","championId":222},"player4":{"id":935,"teamId":1,"name":"Lustboy","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/TSM-Lustboy-2015Summer.jpg","kda":4.3333333333333,"kills":0,"deaths":3,"assists":13,"endLevel":18,"minionsKilled":43,"totalGold":12189,"spell0":"3","spell1":"4","items0":"3069","items1":"2045","items2":"3050","items3":"3010","items4":"3801","items5":"3117","championId":201},"player5":{"id":1158,"teamId":3654,"name":"Quas","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-quas-2015.jpg","kda":1.1428571428571,"kills":2,"deaths":7,"assists":6,"endLevel":18,"minionsKilled":349,"totalGold":16069,"spell0":"12","spell1":"4","items0":"3026","items1":"3143","items2":"3075","items3":"3155","items4":"1324","items5":"3071","championId":150},"player6":{"id":1159,"teamId":3654,"name":"IWDominate","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-dominate-2015.jpg","kda":2.6666666666667,"kills":1,"deaths":3,"assists":7,"endLevel":17,"minionsKilled":149,"totalGold":13646,"spell0":"11","spell1":"4","items0":"3143","items1":"3065","items2":"2049","items3":"1319","items4":"3709","items5":"1031","championId":60},"player7":{"id":3663,"teamId":3654,"name":"FeniX","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-fenix-2015.jpg","kda":3.3333333333333,"kills":5,"deaths":3,"assists":5,"endLevel":18,"minionsKilled":456,"totalGold":19160,"spell0":"4","spell1":"14","items0":"3285","items1":"3174","items2":"3100","items3":"1314","items4":"3089","items5":"3135","championId":117},"player8":{"id":690,"teamId":3654,"name":"Piglet","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-piglet-2015.jpg","kda":1.6666666666667,"kills":2,"deaths":3,"assists":3,"endLevel":18,"minionsKilled":446,"totalGold":18683,"spell0":"4","spell1":"7","items0":"3153","items1":"3078","items2":"3140","items3":"3031","items4":"3035","items5":"1304","championId":96},"player9":{"id":12,"teamId":3654,"name":"Xpecial","photoURL":"http://riot-web-cdn.s3-us-west-1.amazonaws.com/lolesports/s3fs-public/tl-xpecial-2015.jpg","kda":2.3333333333333,"kills":1,"deaths":3,"assists":6,"endLevel":16,"minionsKilled":41,"totalGold":10035,"spell0":"14","spell1":"4","items0":"3117","items1":"3190","items2":"3114","items3":"2043","items4":"3050","items5":"2049","championId":412}},"noVods":0,"legsUrl":"https://acs.leagueoflegends.com/v1/stats/game/TRLH1/1001340118?gameHash=a36c8ab58f36e52a"}'
+    http_version: 
+  recorded_at: Sat, 22 Aug 2015 16:21:54 GMT
+recorded_with: VCR 2.9.3

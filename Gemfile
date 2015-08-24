@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.3'
 gem 'pg'
-gem 'unicorn'
+gem 'passenger'
 gem 'active_model_serializers', '~>0.10.0.rc2'
 gem 'dotenv-rails'
 gem 'devise'
+gem 'lolesports-api', path: '~/Documents/lolesports-api'
+gem 'slowweb'
 
 group :development, :test do
   gem 'pry-rails'
@@ -18,6 +20,7 @@ group :development, :test do
   gem 'fuubar'
   gem 'mailcatcher'
   gem 'bundler-audit'
+  gem 'vcr'
 end
 
 group :test do
@@ -25,6 +28,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'webrat'
   gem 'should_not'
+  gem 'webmock'
 end
 
 group :ct do
