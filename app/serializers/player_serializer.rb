@@ -5,5 +5,6 @@ class PlayerSerializer < ActiveModel::Serializer
   attribute :season_wins, key: 'season-wins'
   attribute :season_losses, key: 'season-losses'
 
-  belongs_to :team
+  belongs_to :team, serializer: TeamSmallSerializer
+  has_many :games
 end
