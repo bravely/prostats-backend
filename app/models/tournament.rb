@@ -7,6 +7,9 @@ class Tournament < ActiveRecord::Base
   has_many :games, through: :matches
   belongs_to :winner, class_name: 'Team'
 
+  scope :first_five, -> { limit(5) }
+  scope :ordered, -> { order(starts_at: :desc) }
+
   def harvest(api_tournament = nil, additional_values = {})
     api_tournament = LolesportsApi::Tournament.find(lolesports_id) unless api_tournament
     update_hash = {

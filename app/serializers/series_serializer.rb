@@ -1,5 +1,6 @@
 class SeriesSerializer < ActiveModel::Serializer
   attributes :id, :name, :season, :finished
 
-  has_many :tournaments
+  belongs_to :league, serializer: LeagueSmallSerializer
+  has_many :tournaments, serializer: TournamentSmallSerializer
 end
