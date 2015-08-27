@@ -7,11 +7,12 @@ gem 'passenger'
 gem 'active_model_serializers',
   git: 'git@github.com:bravely/active_model_serializers.git',
   branch: 'feature/default-json-api-to-dasherized-keys'
-  
+
 gem 'dotenv-rails'
 gem 'devise'
 gem 'lolesports-api', path: '~/Documents/lolesports-api'
 gem 'slowweb'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry-rails'
