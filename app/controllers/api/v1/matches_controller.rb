@@ -3,6 +3,7 @@ class Api::V1::MatchesController < ApplicationController
 
   def index
     @matches = Match.where(match_params)
+               .order(played_at: :desc)
                .includes(:tournament, :blue_team, :red_team, :winner, :games)
                .page(params[:page])
                .per(params[:limit] || 10)
@@ -11,7 +12,7 @@ class Api::V1::MatchesController < ApplicationController
   end
 
   def show
-    render json: @match, include: %w(games blue_team red_team)
+    render json: @match, serializer: SingleMatchSerializer, include: %w(games blue_team red_team)
   end
 
   private
