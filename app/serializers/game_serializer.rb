@@ -1,5 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  cache key: 'game', expires_in: 1.hour
+  cache key: 'games', expires_in: 1.hour
 
   attributes :id, :notes, :played_at, :game_length, :game_number, :youtube_url
 

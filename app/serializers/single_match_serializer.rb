@@ -1,5 +1,5 @@
 class SingleMatchSerializer < ActiveModel::Serializer
-  cache key: 'single_match', expires_in: 1.hour
+  cache key: 'single_matches', expires_in: 1.hour
   attributes :id, :live, :finished, :name, :played_at, :max_games
 
   belongs_to :tournament, serializer: TournamentSmallSerializer
