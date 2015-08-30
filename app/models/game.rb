@@ -42,8 +42,8 @@ class Game < ActiveRecord::Base
     update!(update_hash)
 
     plays.destroy_all
-    api_game.players.each do |api_play|
-      plays << Play.new.harvest(api_play, game: self)
+    api_game.players.each_with_index do |api_play, i|
+      plays << Play.new.harvest(api_play, game: self, position_index: i)
     end
 
     self

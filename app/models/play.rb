@@ -1,4 +1,26 @@
 class Play < ActiveRecord::Base
+  enum position: {
+    top: 0,
+    jungle: 1,
+    middle: 2,
+    marksman: 3,
+    support: 4
+  }
+
+  TEAM_POSITIONS = {
+    0 => :top,
+    1 => :jungle,
+    2 => :middle,
+    3 => :marksman,
+    4 => :support,
+
+    5 => :top,
+    6 => :jungle,
+    7 => :middle,
+    8 => :marksman,
+    9 => :support
+  }
+
   belongs_to :player
   belongs_to :game
   belongs_to :team
@@ -27,7 +49,9 @@ class Play < ActiveRecord::Base
       first_spell: api_play.spell0,
       second_spell: api_play.spell1,
       player: the_player,
-      team: Team.find_by(lolesports_id: api_play.team_id)
+      team: Team.find_by(lolesports_id: api_play.team_id),
+
+      position: TEAM_POSITIONS[additional_values.delete(:position_index)]
     }
     api_play.items.each_with_index { |item_id, i| update_hash["item#{i}".to_sym] = item_id }
     update! update_hash.merge!(additional_values)

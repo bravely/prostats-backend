@@ -83,6 +83,10 @@ RSpec.describe Play, type: :model do
     it { is_expected.to have_db_column(:item0).of_type(:integer) }
   end
 
+  describe '#position' do
+    it { is_expected.to have_db_column(:position).of_type(:integer) }
+  end
+
   describe '#harvest', vcr: true do
     let(:player) { FactoryGirl.create(:player_with_team) }
     let(:game) { FactoryGirl.create(:game) }
