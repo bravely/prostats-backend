@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817181255) do
+ActiveRecord::Schema.define(version: 20150828234153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,11 +171,13 @@ ActiveRecord::Schema.define(version: 20150817181255) do
     t.integer  "league_id"
     t.integer  "winner_id"
     t.string   "season"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "series_id"
+    t.datetime "last_played_at"
   end
 
+  add_index "tournaments", ["last_played_at"], name: "index_tournaments_on_last_played_at", using: :btree
   add_index "tournaments", ["league_id"], name: "index_tournaments_on_league_id", using: :btree
   add_index "tournaments", ["lolesports_id"], name: "index_tournaments_on_lolesports_id", using: :btree
   add_index "tournaments", ["series_id"], name: "index_tournaments_on_series_id", using: :btree
