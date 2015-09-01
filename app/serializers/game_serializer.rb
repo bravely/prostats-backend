@@ -8,5 +8,5 @@ class GameSerializer < ActiveModel::Serializer
   belongs_to :winner, serializer: TeamSmallSerializer
   belongs_to :match, serializer: MatchSmallSerializer
   has_many :players, serializer: PlayerSmallSerializer
-  has_many :plays, serializer: PlaySmallSerializer
+  has_many :plays
 end
