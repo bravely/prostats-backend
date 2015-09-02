@@ -33,7 +33,7 @@ RSpec.describe Tournament, type: :model do
     it { is_expected.to have_many(:games) }
   end
 
-  describe '#last_played_at', focus: true do
+  describe '#last_played_at' do
     let!(:tournament) { FactoryGirl.create(:tournament) }
     let!(:match) { FactoryGirl.create(:match, tournament: tournament, finished: true) }
     before do

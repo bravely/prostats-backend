@@ -5,6 +5,8 @@ class Match < ActiveRecord::Base
   belongs_to :winner, class_name: 'Team'
   has_many :games
 
+  scope :with_team, -> (team_id) { where('blue_team_id = ? OR red_team_id = ?', team_id, team_id) }
+
   def harvest(api_match = nil, additional_values = {})
     api_match = LolesportsApi::Match.find(lolesports_id) unless api_match
     update_hash = {

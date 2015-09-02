@@ -8,6 +8,8 @@ class Api::V1::MatchesController < ApplicationController
                .page(params[:page])
                .per(params[:limit] || 10)
 
+    @matches = @matches.with_team(team_param) if team_param
+
     render json: @matches, include: %w(tournaments, blue_team, red_team, winner, games)
   end
 
@@ -23,5 +25,9 @@ class Api::V1::MatchesController < ApplicationController
 
   def match_params
     params.permit(:tournament_id, :finished)
+  end
+
+  def team_param
+    params[:team_id]
   end
 end

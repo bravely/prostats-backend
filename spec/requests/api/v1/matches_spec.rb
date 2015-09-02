@@ -24,6 +24,18 @@ RSpec.describe 'Api::V1::Matches', type: :request do
       it { expect(json['data'].map { |e| e['id'].to_i }).to include(match_one.id) }
       it { expect(json['data'].map { |e| e['id'].to_i }).to_not include(match_two.id) }
     end
+    context 'with team_id query param' do
+      let(:team) { FactoryGirl.create(:team) }
+      let!(:match_one) { FactoryGirl.create(:match, blue_team: team) }
+      let!(:match_two) { FactoryGirl.create(:match) }
+      before do
+        get api_matches_path team_id: team.id
+      end
+      it { expect(response).to be_success }
+      it { expect(response.content_type).to eq 'application/json' }
+      it { expect(json['data'].map { |e| e['id'].to_i }).to include(match_one.id) }
+      it { expect(json['data'].map { |e| e['id'].to_i }).to_not include(match_two.id) }
+    end
   end
 
   describe 'GET /api/matches/:id' do
