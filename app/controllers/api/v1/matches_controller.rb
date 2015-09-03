@@ -11,8 +11,8 @@ class Api::V1::MatchesController < ApplicationController
     @matches = @matches.with_team(team_param) if team_param
 
     render json: @matches,
-      include: %w(tournaments, blue_team, red_team, winner, games),
-      meta: { total_pages: @matches.total_pages }
+           include: %w(tournaments, blue_team, red_team, winner, games),
+           meta: { total_pages: @matches.total_pages }
   end
 
   def show
