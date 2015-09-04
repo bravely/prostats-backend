@@ -15,7 +15,6 @@ class Player < ActiveRecord::Base
     'Support' => :support
   }
 
-  default_scope { order('handle ASC') }
   belongs_to :team
   has_many :plays
   has_many :games, through: :plays

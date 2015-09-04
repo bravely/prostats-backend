@@ -73,11 +73,25 @@ RSpec.describe Game, type: :model do
     it { should have_db_column(:youtube_url).of_type(:string) }
   end
 
+  describe '.with_player' do
+    let(:player) { FactoryGirl.create(:player) }
+    let(:play_with_player) { FactoryGirl.create(:play, player: player) }
+    let!(:game_without_player) { FactoryGirl.create(:game) }
+    let!(:game_with_player) do
+      FactoryGirl.create(:game).tap do |game|
+        game.plays << play_with_player
+      end
+    end
+    subject { Game.with_player(player.id) }
+    it { expect(subject).to include(game_with_player) }
+    it { expect(subject).to_not include(game_without_player) }
+  end
+
   describe '#blue_team_players' do
     context 'when no players are assigned' do
       let(:team) { FactoryGirl.create(:team_with_players) }
       let(:game) { FactoryGirl.create(:game, blue_team: team) }
-      it { expect(game.blue_team_players).to eq team.players }
+      it { expect(game.blue_team_players).to include(*team.players) }
     end
 
     context 'when players are assigned' do
@@ -96,7 +110,7 @@ RSpec.describe Game, type: :model do
     context 'when no players are assigned' do
       let(:team) { FactoryGirl.create(:team_with_players) }
       let(:game) { FactoryGirl.create(:game, red_team: team) }
-      it { expect(game.red_team_players).to eq team.players }
+      it { expect(game.red_team_players).to include(*team.players) }
     end
 
     context 'when players are assigned' do

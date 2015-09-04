@@ -10,6 +10,8 @@ class Game < ActiveRecord::Base
 
   after_create :assign_team_players
 
+  scope :with_player, -> (player_id) { where(plays: { player_id: player_id }).includes(:plays).references(:plays) }
+
   def blue_team_plays
     plays.where(team: blue_team)
   end
