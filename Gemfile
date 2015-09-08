@@ -10,7 +10,7 @@ gem 'active_model_serializers',
 
 gem 'dotenv-rails'
 gem 'devise'
-gem 'lolesports-api', path: '~/Documents/lolesports-api'
+gem 'lolesports-api', '~> 0.2'
 gem 'slowweb'
 gem 'kaminari'
 

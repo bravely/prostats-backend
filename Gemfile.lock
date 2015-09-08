@@ -6,13 +6,6 @@ GIT
     active_model_serializers (0.10.0.rc2)
       activemodel (>= 4.0)
 
-PATH
-  remote: ~/Documents/lolesports-api
-  specs:
-    lolesports-api (0.1.7)
-      faraday (~> 0.9)
-      json (~> 1.8)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,6 +134,9 @@ GEM
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    lolesports-api (0.2.0)
+      faraday (~> 0.9)
+      json (~> 1.8)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.9)
@@ -321,7 +317,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   kaminari
-  lolesports-api!
+  lolesports-api (~> 0.2)
   mailcatcher
   passenger
   pg
