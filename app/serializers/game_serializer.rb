@@ -1,11 +1,12 @@
 class GameSerializer < ActiveModel::Serializer
-  cache key: 'game', expires_in: 3.hours
-  attributes :id, :played_at, :notes, :game_length, :game_number, :youtube_url
+  cache key: 'games', expires_in: 1.hour
 
-  belongs_to :blue_team
-  belongs_to :red_team
-  belongs_to :winner
-  belongs_to :match
-  has_many :players
+  attributes :id, :notes, :played_at, :game_length, :game_number, :youtube_url
+
+  belongs_to :blue_team, serializer: TeamSmallSerializer
+  belongs_to :red_team, serializer: TeamSmallSerializer
+  belongs_to :winner, serializer: TeamSmallSerializer
+  belongs_to :match, serializer: MatchSmallSerializer
+  has_many :players, serializer: PlayerSmallSerializer
   has_many :plays
 end

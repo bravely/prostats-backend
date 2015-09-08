@@ -80,13 +80,6 @@ RSpec.describe Player, type: :model do
     it { is_expected.to have_db_column(:lolesports_id).of_type(:integer) }
   end
 
-  describe 'returns in the proper order' do
-    let!(:shy) { FactoryGirl.create(:player, handle: 'Shy') }
-    let!(:bjergerking) { FactoryGirl.create(:player, handle: 'Bjergsen') }
-
-    it { expect(Player.all).to eq [bjergerking, shy] }
-  end
-
   describe '#harvest', vcr: true do
     context 'when an api object is provided' do
       let(:api_player) { LolesportsApi::Player.find(329) }

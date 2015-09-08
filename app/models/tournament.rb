@@ -7,6 +7,10 @@ class Tournament < ActiveRecord::Base
   has_many :games, through: :matches
   belongs_to :winner, class_name: 'Team'
 
+  scope :ordered, -> { order(last_played_at: :desc) }
+
+  after_touch :check_latest_match
+
   def harvest(api_tournament = nil, additional_values = {})
     api_tournament = LolesportsApi::Tournament.find(lolesports_id) unless api_tournament
     update_hash = {
@@ -19,5 +23,13 @@ class Tournament < ActiveRecord::Base
     }.merge(additional_values)
     update!(update_hash)
     self
+  end
+
+  private
+
+  def check_latest_match
+    self.last_played_at = Match.where(tournament_id: id, finished: true)
+      .order(played_at: :desc).first.try(:played_at)
+    self.save!
   end
 end

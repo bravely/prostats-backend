@@ -1,3 +1,4 @@
 class TeamSmallSerializer < ActiveModel::Serializer
-  attributes :id, :name, :location
+  cache key: 'teams_small', expires_in: 1.hour
+  attributes :id, :name, :location, :acronym
 end

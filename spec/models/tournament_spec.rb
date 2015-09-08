@@ -33,6 +33,16 @@ RSpec.describe Tournament, type: :model do
     it { is_expected.to have_many(:games) }
   end
 
+  describe '#last_played_at' do
+    let!(:tournament) { FactoryGirl.create(:tournament) }
+    let!(:match) { FactoryGirl.create(:match, tournament: tournament, finished: true) }
+    before do
+      tournament.reload
+    end
+    it { is_expected.to have_db_column(:last_played_at).of_type(:datetime) }
+    it { expect(tournament.last_played_at).to eq match.played_at }
+  end
+
   describe '#harvest', vcr: true do
     context 'when an api object is not provided' do
       let(:api_tournament) { LolesportsApi::Tournament.find(184) }

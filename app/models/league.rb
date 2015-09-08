@@ -1,6 +1,6 @@
 class League < ActiveRecord::Base
   has_many :teams
-  has_many :tournaments
+  has_many :tournaments, -> { order(last_played_at: :desc) }
   has_many :series
 
   def harvest(api_league = nil)

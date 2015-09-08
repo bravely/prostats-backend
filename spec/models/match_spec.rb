@@ -41,6 +41,16 @@ RSpec.describe Match, type: :model do
     it { is_expected.to belong_to(:red_team) }
   end
 
+  describe '.with_team' do
+    let(:team) { FactoryGirl.create(:team) }
+    let(:match_one) { FactoryGirl.create(:match, blue_team: team) }
+    let(:match_two) { FactoryGirl.create(:match, red_team: team) }
+    let(:match_three) { FactoryGirl.create(:match) }
+    subject { Match.with_team(team.id) }
+    it { expect(subject).to include(match_one, match_two) }
+    it { expect(subject).to_not include(match_three) }
+  end
+
   describe '#harvest', vcr: true do
     context 'when an api object is not provided' do
       let(:api_match) { LolesportsApi::Match.find(5334) }

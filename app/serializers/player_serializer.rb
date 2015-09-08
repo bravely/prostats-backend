@@ -1,9 +1,7 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :handle, :position
-  attribute :first_name, key: 'first-name'
-  attribute :last_name, key: 'last-name'
-  attribute :season_wins, key: 'season-wins'
-  attribute :season_losses, key: 'season-losses'
+  cache key: 'players', expires_in: 1.hour
+  attributes :id, :handle, :position, :first_name, :last_name, :season_wins,
+             :season_losses, :starter, :contract_expires_at
 
   belongs_to :team, serializer: TeamSmallSerializer
   # has_many :games
