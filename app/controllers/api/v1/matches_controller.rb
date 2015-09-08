@@ -4,14 +4,13 @@ class Api::V1::MatchesController < ApplicationController
   def index
     @matches = Match.where(match_params)
                .order(played_at: :desc)
-               .includes(:tournament, :blue_team, :red_team, :winner, :games)
                .page(params[:page])
                .per(params[:limit] || 10)
 
     @matches = @matches.with_team(team_param) if team_param
 
     render json: @matches,
-           include: %w(tournaments, blue_team, red_team, winner, games),
+           each_serializer: MatchSmallSerializer,
            meta: { total_pages: @matches.total_pages }
   end
 

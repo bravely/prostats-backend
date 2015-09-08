@@ -4,14 +4,13 @@ class Api::V1::GamesController < ApplicationController
   def index
     @games = Game.where(game_params)
              .order(played_at: :desc)
-             .includes(:plays, :players, :blue_team, :red_team)
              .page(params[:page])
-             .per(params[:limit] || 10)
+             .per(params[:limit] || 5)
 
     @games = @games.with_player(player_param) if player_param
 
     render json: @games,
-           include: %w(plays players blue_team red_team winner),
+           each_serializer: GameSmallSerializer,
            meta: { total_pages: @games.total_pages }
   end
 
@@ -26,7 +25,7 @@ class Api::V1::GamesController < ApplicationController
   end
 
   def game_params
-    params.permit(:match_id, :finished)
+    params.permit(:match_id)
   end
 
   def player_param
