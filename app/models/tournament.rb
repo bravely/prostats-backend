@@ -7,7 +7,6 @@ class Tournament < ActiveRecord::Base
   has_many :games, through: :matches
   belongs_to :winner, class_name: 'Team'
 
-  scope :first_five, -> { limit(5) }
   scope :ordered, -> { order(last_played_at: :desc) }
 
   after_touch :check_latest_match
